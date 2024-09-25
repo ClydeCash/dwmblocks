@@ -1,0 +1,6 @@
+#!/bin/sh
+echo " $( date '+%a, %d/%m/%y' )|"
+
+case $BLOCK_BUTTON in
+	3) setsid -f "$TERMINAL" -e calcurse
+esac

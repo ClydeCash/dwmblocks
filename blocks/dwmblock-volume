@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	2) pactl set-sink-mute 0 toggle ;;
+	3) setsid "$TERMINAL" -e pulsemixer ;;
+	4) pactl set-sink-volume 0 +1% ;;
+	5) pactl set-sink-volume 0 -1% ;;
+esac
+
+
+[ "$( pactl get-sink-mute 0 )" = "Mute: yes" ] && echo "󰸈 Muted|" && exit
+
+vol="$( pactl get-sink-volume 0 | awk '/Volume:/ {printf "%i\n", $5}' )"
+
+case 1 in
+ 	$((vol >= 60)) ) icon="󰕾" ;;
+ 	$((vol >= 30)) ) icon="󰖀" ;;
+ 	$((vol >= 0)) )  icon="󰕿" ;;
+esac
+
+ echo "$icon $vol|"

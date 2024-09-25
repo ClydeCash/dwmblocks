@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "$( cat ~/.cache/statusbar/weather-report-status-latest)|"
+
+case $BLOCK_BUTTON in
+	1) weather-report ;;
+	3) setsid "$TERMINAL" -e less -SRfF ~/.cache/statusbar/weather-report-report-latest ;;
+esac

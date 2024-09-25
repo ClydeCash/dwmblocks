@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# Fetch icon from wttr.in
+[ $( date "+%H" ) -ge 6 -a $( date "+%H" ) -lt 18 ] && time="day" || time="night"
+
+curl -s -m 10 'wttr.in/?format=%c' > ~/.cache/statusbar/.wr-icon-raw.temp || echo "Weather report: Could not fetch data from the internet. Please, try again in a moment."
+
+rawicon=$( cat ~/.cache/statusbar/.wr-icon-raw.temp )
+
+case $rawicon in
+	☀️)   dicon="" nicon="" ;;
+	☁️)   dicon="" nicon="" ;;
+	⛅️)  dicon="" nicon="" ;;
+	⛈)   dicon="" nicon="" ;;
+	✨)  dicon="" nicon="" ;;
+	❄️)   dicon="" nicon="" ;;
+	🌦)  dicon="" nicon="" ;;
+	🌧)  dicon="" nicon="" ;;
+	🌨)  dicon="" nicon="" ;;
+	🌩)  dicon="" nicon="" ;;
+	🌫)  dicon="" nicon="" ;;
+	*)   dicon="" nicon="" ;;
+esac
+
+[ $time = "day" ] && echo "$dicon" > ~/.cache/statusbar/.wr-icon.temp || echo "$nicon" > ~/.cache/statusbar/.wr-icon.temp && rm -f ~/.cache/statusbar/.wr-icon-raw.temp
+
+icon=$( cat ~/.cache/statusbar/.wr-icon.temp )
+
+# Fetch temperature data from wttr.in
+curl -s -m 10 'wttr.in/?format=%t' > ~/.cache/statusbar/.wr-temp-raw.temp &&  awk '{ print  int($1)"ºC"}' ~/.cache/statusbar/.wr-temp-raw.temp > ~/.cache/statusbar/.wr-temp.temp || exit
+
+temp=$( cat ~/.cache/statusbar/.wr-temp.temp )
+
+# Generate status block
+echo "$icon $temp" > ~/.cache/statusbar/weather-report-status-latest && rm -f ~/.cache/statusbar/.wr-temp-raw.temp && rm -f ~/.cache/statusbar/.wr-temp.temp && rm -f ~/.cache/statusbar/.wr-icon.temp
+
+# Display Forecast on Terminal
+curl -s -m 10 'wttr.in/?n' > ~/.cache/statusbar/weather-report-report-latest
+
+cat ~/.cache/statusbar/weather-report-report-latest
+
+# Update dwmblocks module
+kill -37 $(pidof dwmblocks)

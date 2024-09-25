@@ -39,8 +39,9 @@ sudo chmod +x install.sh
 ## Setting up the current temperature block
 
 ````bash
-# Assuming dwmblocks was installed with method II (install.sh). If not the case, then 'weather-report'
-# must be moved to /bin (or ~/.local/bin if set up) and made executable with 'chmod +x'.
+# Assuming dwmblocks was installed with method II (install.sh). If not the case,
+# then 'weather-report' must be moved to /bin (or ~/.local/bin if set up) and made
+# executable with 'chmod +x'.
 
 crontab -e
 # Add the following line, then save file

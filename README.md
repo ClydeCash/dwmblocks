@@ -19,17 +19,17 @@ The 'blocks' folder contains all the blocks I made.
 
 ## Installation 
 
-Method I (dwmblocks alone)
-
 ````bash
+# Method I, dwmblocks alone (config.h must be edited to remove non-present blocks).
 git clone https://github.com/ClydeCash/dwmblocks
 cd dwmblocks
 sudo make clean install
 ````
 
-Method II (Will also install my blocks)
+or
 
 ````bash
+# Method II, will move all blocks to /bin and make them executable with 'chmod +x'.
 git clone https://github.com/ClydeCash/dwmblocks
 cd dwmblocks
 sudo chmod +x install.sh

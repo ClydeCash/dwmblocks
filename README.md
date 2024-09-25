@@ -9,6 +9,7 @@ The 'blocks' folder contains all the blocks I made.
 
 ## Blocks
 
+![alt text](https://github.com/ClydeCash/dwmblocks/blob/main/blocks/.blocks.png?raw=true)
 - Clock
 - Calendar (Requires calcurse for the click function.)
 - Current temperature (A script included, 'weather-report', should be set as a cron job for the block to update itself automatically.)

@@ -35,3 +35,11 @@ cd dwmblocks
 sudo chmod +x install.sh
 ./install.sh
 ````
+
+## Setting up the current temperature block
+
+````bash
+crontab -e
+# Add the following line, then save file
+*/15 * * * * /bin/weather-report > /dev/null 
+````

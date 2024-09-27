@@ -1,5 +1,0 @@
-#!/bin/sh
-
-temp=$( nvidia-smi | awk 'NR==10 {printf "%i\n", $3}' )
-
-echo " GPU:$tempºC|"

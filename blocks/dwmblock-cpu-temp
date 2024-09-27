@@ -1,5 +1,0 @@
-#!/bin/sh
-
-temp=$( sensors | awk '/Package id 0/ {printf "%i\n",  $4}' )
-
-echo " CPU:$tempºC|"
